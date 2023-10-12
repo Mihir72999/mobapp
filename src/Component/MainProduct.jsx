@@ -50,9 +50,9 @@ const MainProduct = () => {
 
           </ol>
         </nav>
-      <div className="flex justify-center items-center">  
-   <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
- 
+        
+   <div className='flex flex-wrap justify-center'>
+   
   {isSuccess && product.map(({name,id,price,image} , index  )=>{
    
     return <div key={index} className ='flex bg-zinc-100 justify-center mx-1  my-3 w-[250px]'>
@@ -70,7 +70,7 @@ const MainProduct = () => {
     </div>
   })}
    </div>
-   </div>        
+           
     </section>
   )
 } 
