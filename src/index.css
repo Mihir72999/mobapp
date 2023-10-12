@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+
+
+
+body {
+  margin: 10px;
+ padding: 0;
+ overflow-x: hidden;
+ 
+}
+.button{
+  background-color: none;
+  transition-property: background-color;
+  
+}
+
+.button:hover {
+  
+  background-color: aliceblue;
+  transition-duration: 2s;
+  transition-delay: 2s;
+}
+
+.buttons::before{
+ display:flexbox;
+ position: absolute;
+  content: attr(data-cart);
+  top: 20px;
+  height: 22px;
+  width: 22px;
+  border-radius: 11px;
+  background-color: red;
+  color: white;
+}
+
+.buttonss::before{
+display: flex;
+position: relative;
+justify-content: center;
+content: attr(data-cart);
+top: 15px;
+left: 20px;
+height: 20px;
+width: 20px;
+border-radius: 11px;
+background-color: red;
+color: white;
+}
