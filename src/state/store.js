@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { productSlice } from "./productSlice";
-import addSlice from "./AddSlice";
+import addSlice from "./addSlice";
 import storage from 'redux-persist/lib/storage'
 import { encryptTransform } from "redux-persist-transform-encrypt";
 import {persistReducer ,
