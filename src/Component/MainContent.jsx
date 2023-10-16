@@ -15,7 +15,7 @@ const MainContent = () => {
         Whether you are a trendsetter or a minimalist,
        our collection offers designs to match your unique taste.</p>
 
-       <a href='/product' className="text-sm font-bold text-blue-500 ">Add To Cart</a>
+       <Link to='/product' className="text-sm font-bold text-blue-500 ">Add To Cart</Link>
   </div>
  
 
