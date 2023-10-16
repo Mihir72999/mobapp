@@ -1,7 +1,7 @@
 import {createApi , fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 
    const baseQuery = fetchBaseQuery({
-    baseUrl:'http://localhost:3400',
+    baseUrl:'https://mobilecoverapi.onrender.com/',
     credentials:'include',
     prepareHeaders:async(headers,{getState})=>{
         
