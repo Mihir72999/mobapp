@@ -66,7 +66,7 @@ const [detail , setDetail]  = useState({
             description: " Transaction",
             image: "",
             order_id: id , //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-            callback_url: `http://localhost:3400/callback`,
+            callback_url: `https://mobilecoverapi.onrender.com/callback`,
             prefill: {
               name: fname,
               email:email,
