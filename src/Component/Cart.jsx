@@ -8,6 +8,7 @@ import Formate from "./Formate"
 import PriceReducer from "./PriceReducer"
 import actualTax from "./actualTax"
 import { memo } from "react"
+import useTitle from "../hook/useTitle"
 
 
 const Carts = () => {
@@ -15,7 +16,7 @@ const Carts = () => {
 
   const item = useSelector(selectAll)
   
-
+ item.length ? useTitle(`Total ${price}`) : useTitle('no item in cart')
   const actualTaxes = actualTax(item)
 
 
