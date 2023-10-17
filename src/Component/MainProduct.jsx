@@ -1,36 +1,27 @@
  import { useSelector } from "react-redux"
- import { productDatas, useGetProductQuery } from "../state/expandedSlice"
+ import { productDatas} from "../state/expandedSlice"
  import { Link } from "react-router-dom"
  import { FcHome } from 'react-icons/fc'
  import { LiaProductHunt } from 'react-icons/lia'
-import Formate from "./Formate"
-import { LazyLoadImage } from "react-lazy-load-image-component"
-import ReactLog from "./Log"
+import useTitle from "../hook/useTitle"
+import { ProductCard } from "./ProductCard"
+
 
 
 const MainProduct = () => {
-
- 
-  const {isSuccess  , isError , error } = useGetProductQuery('ProductList')
   
-   const product = useSelector(productDatas)
- 
-   const onError = ReactLog.LogItem(isError)
-   
+  // Fetch product data from Redux store
+  const product = useSelector(productDatas)
   
-
-    
-
- 
- if(onError){
-  return <strong>...went something wrong from us or check your internet connection , {error?.message  }</strong>
- }
+   // Set the page title using the custom hook
+    useTitle("Product")
+      
 
  
     return (
     <section>
    
-   
+    {/* Breadcrumb navigation */}
    <nav aria-label="Breadcrumb">
           <ol role="list" className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
             <li>
@@ -43,8 +34,7 @@ const MainProduct = () => {
             </li>
             <li>
               <div className="flex items-center">
-                <a  className="mr-2 text-sm font-medium text-gray-900"><LiaProductHunt /></a>
-              
+              <a className="mr-2 text-sm font-medium text-gray-900">  <LiaProductHunt /> </a>
               </div>
             </li>
 
@@ -52,26 +42,15 @@ const MainProduct = () => {
         </nav>
         
    <div className='flex flex-wrap justify-center'>
+   {/* Product listing */}
+  {product && product.map((item , index  )=>{
    
-  {isSuccess && product.map(({name,id,price,image} , index  )=>{
-   
-    return <div key={index} className ='flex bg-zinc-100 justify-center mx-1  my-3 w-[250px]'>
-   <div className="flex flex-col  justify-center items-center ">
-   <LazyLoadImage src={image}
-                      
-                      width={150}
-                      height={300}
-                      alt="Image Alt"
-                    />
-    <span className='px-2'>{name}</span>
-    <span className='flex items-center'><strong>Price:</strong>{Formate(price)}</span>
-    <Link to={`/product/${id}?name=${name}`} className='bg-sky-500 py-2 px-10 rounded-md text-white' >Add to Cart</Link> 
-    </div>
-    </div>
+    return  <ProductCard key={index} {...item} /> 
   })}
    </div>
            
     </section>
   )
 } 
+
 export default MainProduct
