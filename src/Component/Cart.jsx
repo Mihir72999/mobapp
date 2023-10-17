@@ -16,7 +16,6 @@ const Carts = () => {
 
   const item = useSelector(selectAll)
   
- item.length ? useTitle(`Total ${price}`) : useTitle('no item in cart')
   const actualTaxes = actualTax(item)
 
 
@@ -27,6 +26,7 @@ const Carts = () => {
 
 
    const price = Formate(subTotal +  Delivery + actualTaxes )
+ item.length ? useTitle(`Total ${price}`) : useTitle('no item in cart')
   
   
    const content = (
