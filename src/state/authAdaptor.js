@@ -1,5 +1,6 @@
 
-import { logOut, setCredetial } from "./authSlice";
+import { logOut, setCredetial, userDetail } from "./authSlice";
+import { expandedSlice } from "./expandedSlice";
 import { productSlice } from "./productSlice";
 
 export const authAddaptor = productSlice.injectEndpoints({
@@ -35,8 +36,8 @@ export const authAddaptor = productSlice.injectEndpoints({
                 if(data?.accessToken){
                     dispatch(setCredetial({accessToken}))
                     setTimeout(()=>{
-                    dispatch(productSlice.util.resetApiState())
-                },1000)
+                        expandedSlice.util.resetApiState()
+                    },1000)
                 }
            }catch(err){
             console.log(err)
@@ -49,7 +50,18 @@ export const authAddaptor = productSlice.injectEndpoints({
             query:()=>({
                 url:'getUser',
                 method:"GET",
-            })
+            }),
+           async onQueryStarted(arg,{dispatch,queryFulfilled}){
+              try{
+                  const {data} = await queryFulfilled
+                  if(data){
+                      dispatch(userDetail({...data}))
+                    }else{
+                        dispatch(userDetail({user:{}}))
+                    }
+                }catch(err){ console.log(err) }
+            },
+            transformErrorResponse:response=>response.data
         }),
         updatePassword:builder.mutation({
           query:(user)=>({
@@ -85,15 +97,22 @@ export const authAddaptor = productSlice.injectEndpoints({
             try{
                 await queryFulfilled
                 dispatch(logOut())
-                localStorage.clear()
+                dispatch(userDetail({}))
                 setTimeout(()=>{
                     dispatch(productSlice.util.resetApiState())
                 },1000)
             }catch(error){
-                console.log(error)
+                 console.log(error)
             }
         }
-    }) 
+    }) ,
+    deleteUser:builder.mutation({
+        query:userId=>({
+            url:'deleteuser',
+            method:'DELETE',
+            body:{userId}
+        })
+    })
 
 
     })
@@ -105,6 +124,7 @@ export const {usePostRegisterMutation ,
                     useGetUserQuery,
                     usePostOrderMutation,
                     useUpdatePasswordMutation,
+                   useDeleteUserMutation ,
                  useUserLogoutMutation } = authAddaptor
 
 
