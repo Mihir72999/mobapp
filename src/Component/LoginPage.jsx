@@ -3,8 +3,12 @@ import { useLoginMutation } from "../state/authAdaptor"
 
 import {NavLink, useNavigate} from 'react-router-dom'
 import LoadingBar from "react-top-loading-bar"
+import useTitle from "../hook/useTitle"
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth"
+import { apps } from "../hook/firebase"
 
 const LoginPage = () => {
+  useTitle("Login here")
   const [progress , setProgress] = useState(0)
   const [ email , setEmail ] = useState('')
 const [password, setPassword] = useState('')
@@ -15,7 +19,7 @@ const navigate = useNavigate()
 const handleSubmit = async(e) =>{
   try{
      e.preventDefault()
-    login({email,password})
+    await login({email,password})
     setEmail('')
     setPassword('')
     setProgress(100)
@@ -25,15 +29,22 @@ const handleSubmit = async(e) =>{
   }catch(err){
 
     if(error?.message){
-         
-      localStorage.clear()
-    }
+           localStorage.clear()
+    }}}
+  const handleGoogleSignin = async(e) =>{
+    try{
+      e.preventDefault()
+      const googlePrivider = new GoogleAuthProvider()
+      const auth = getAuth(apps)
+      const result = await signInWithPopup(auth , googlePrivider)
+      const {displayName ,email } =  result?.user
+       login({email:email,password:displayName})
+       navigate('/main')
 
-  }
-  
- 
- 
+    }catch(err){
+      window.alert(`user not found | ${err}`)
     }
+  }  
     
 if(isLoading){
   return <LoadingBar
@@ -77,8 +88,10 @@ if(isLoading){
                       </div>
                   </div>
                   <button  type="submit" className="w-full text-white bg-indigo-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Login to account</button>
+                  <div>or</div>
+                  <button onClick={handleGoogleSignin}> login with google </button>
                   <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                      not accounnt? <NavLink to="/register" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Register here</NavLink>
+                      not accounnt? <NavLink to="/" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Register here</NavLink>
                   </p>
               </form>
           </div>
