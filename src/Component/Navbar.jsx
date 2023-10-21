@@ -1,11 +1,11 @@
-import { Fragment , memo, useState } from 'react'
+import { Fragment ,  useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { AiFillBell, AiOutlineClose, AiOutlineMenu, AiOutlineShoppingCart } from 'react-icons/ai'
 import { Link, useLocation } from 'react-router-dom'
 import {  useSelector } from 'react-redux'
 // import jwtDecode from "jwt-decode"
 
-import { useGetUserQuery, useUserLogoutMutation } from '../state/authAdaptor'
+import { useDeleteUserMutation, useGetUserQuery, useUserLogoutMutation } from '../state/authAdaptor'
 import { selectAll } from '../state/addSlice'
 
 
@@ -24,7 +24,7 @@ function classNames(...classes) {
 }
 
 
-const Navbars = () => {
+const Navbar = () => {
   const {pathname} = useLocation()
   const exectPath = pathname.split('/')[1]
   // const {cartItem} = useSelector(state=>state.cart)
@@ -38,10 +38,14 @@ const Navbars = () => {
     name: data?.userName ?  data?.userName :'Tom Cook',
     email: data?.email ? data?.email : 'tom@example.com',
     imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    data?.image ? data?.image : 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
   }
+  
   const [userLogout] = useUserLogoutMutation()
   const cart = useSelector(selectAll)
+  const {user:users} = useSelector(state=>state.auth)
+const [deleteUser] = useDeleteUserMutation()
+
   const handleChanges = () =>{
     if(data?.userName){
       userLogout()
@@ -50,11 +54,15 @@ const Navbars = () => {
     }
       
   }
+  const deleteUsers = (userId) =>{
+  deleteUser(userId)
+  window.alert(`${data?.userName} has been deleted account`)
+  }
   const userNavigation = [
     { name: data?.userName ? 'Welcome' : 'Register', href: data?.userName ? '/main' : '/' ,isActive:exectPath === '' ? true : false},
     { name: data?.userName ? (<button data-cart={cart?.length} className={classNames(cart?.length ? 'buttonss' : '')}><AiOutlineShoppingCart size={25} /></button>) :'Log in', href: data?.userName ? '/cart' :'/login' },
     { name: data?.userName ? 'Sign out' : '' ,  signOut:handleChanges },
-    
+    { name: data?.userName ? 'deleteUserAccount' : '' , deleteUsers }
   ]
   // const navigate = useNavigate()
   const [current ,setCurrent] = useState(navigation)
@@ -135,9 +143,9 @@ const updatedNavigation = navigation.map((item, idx) => {
                       {/* Profile dropdown */}
                       <Menu as="div" className="relative ml-3">
                         <div>
-                          <Menu.Button className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                          <Menu.Button className="flex max-w-xs items-center  bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                             <span className="sr-only">Open user menu</span>
-                            <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" />
+                            <img className="h-10 w-10 rounded-full" src={user.imageUrl} alt="" />
                           </Menu.Button>
                         </div>
                         <Transition
@@ -154,7 +162,7 @@ const updatedNavigation = navigation.map((item, idx) => {
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
                                   <Link
-                                  onClick={()=>item.signOut()}
+                                  onClick={()=>item.name === 'Sign out' ? item.signOut() : item.deleteUsers(users.id)}
                                     to={item.href}
                                     className={classNames(
                                       active ? 'bg-gray-100' : '',
@@ -246,5 +254,5 @@ const updatedNavigation = navigation.map((item, idx) => {
     </>
   )
 }
-const Navbar = memo(Navbars)
+
 export default Navbar
