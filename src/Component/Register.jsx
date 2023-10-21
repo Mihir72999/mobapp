@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState  } from "react"
 import { usePostRegisterMutation } from "../state/authAdaptor"
 import { NavLink } from "react-router-dom"
-
-// import { useNavigate } from "react-router-dom"
+import {GoogleAuthProvider ,getAuth, signInWithPopup } from 'firebase/auth'
+import { apps } from "../hook/firebase"
 
 const Register = () => {
   
@@ -24,7 +24,18 @@ const userRef = useRef()
     setEmail('')
     setPassword('')
    }
-   
+   const handleRegisterWithGoogle = async(e) =>{
+    try{
+      e.preventDefault()
+      const googlePrivider = new GoogleAuthProvider()
+      const auth = getAuth(apps)
+      const result = await signInWithPopup(auth , googlePrivider)
+      const {displayName ,email , photoURL} =  result?.user
+      postRegister({userName:displayName , email:email , image: photoURL , password:displayName })
+    }catch(err){
+      window.alert(`${err}`)
+    }
+   }
     useEffect(()=>{
     userRef.current.focus()
     
@@ -35,7 +46,7 @@ const userRef = useRef()
   }
  
   return (
-    <>
+    <div >
     {isError && <div  aria-live="assertive">{error.message}</div>}
         <section className="bg-gray-50 dark:bg-gray-900">
   <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -71,6 +82,8 @@ const userRef = useRef()
                       </div>
                   </div>
                   <button onClick={onHandlesubmit} type="submit" className="w-full text-white bg-indigo-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Create an account</button>
+                  <div>or</div>
+                  <button className="hover:underline" onClick={handleRegisterWithGoogle}>Register with Google</button>
                   <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                       Already have an account? <NavLink to="/login" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</NavLink>
                   </p>
@@ -78,7 +91,7 @@ const userRef = useRef()
           </div>
       </div>
   </div>
-</section></>
+</section></div>
 
   )
 }
