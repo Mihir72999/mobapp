@@ -5,12 +5,15 @@ import { useGetUserQuery } from "../state/authAdaptor";
 import { useEffect , useState } from "react";
 import LoadingBar from "react-top-loading-bar";
 import { useGetProductQuery } from "../state/expandedSlice";
+import { useGetBrandmodelQuery } from "../state/brandmodelSlice";
 
 
 const Prefetchs = () =>{
   const [progress , setProgress] = useState(0)  
     const { data , status } = useGetUserQuery('UserList')
-                       useGetProductQuery()
+                       useGetProductQuery('ProductList')
+                       useGetBrandmodelQuery('BrandmodelList')
+
 
 const navigate = useNavigate() 
 
