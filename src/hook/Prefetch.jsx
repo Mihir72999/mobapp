@@ -2,12 +2,12 @@ import { productSlice } from "../state/productSlice";
 import { store } from "../state/store";
 import {  Outlet, useNavigate} from "react-router-dom";
 import { useGetUserQuery } from "../state/authAdaptor";
-import { useEffect , memo, useState } from "react";
+import { useEffect , useState } from "react";
 import LoadingBar from "react-top-loading-bar";
 import { useGetProductQuery } from "../state/expandedSlice";
 
 
-const Prefetch = () =>{
+const Prefetchs = () =>{
   const [progress , setProgress] = useState(0)  
     const { data , status } = useGetUserQuery('UserList')
                        useGetProductQuery()
@@ -19,7 +19,7 @@ const navigate = useNavigate()
     store.dispatch(productSlice.util.prefetch('getProduct' , 'ProductList' , {force:true}))
   store.dispatch(productSlice.util.prefetch('getBrandmodel' , 'BrandmodelList' , {force:true}))
 
-},[data?.useName ,data?.email])
+},[])
 if(status === 'pending'){
   return <LoadingBar
   color="#f11946"
@@ -40,7 +40,7 @@ const content = (
 return data && !data.message ? <Outlet/> : content
 }
 
-const Prefetchs = memo(Prefetch)
+
 export default Prefetchs
 
     
