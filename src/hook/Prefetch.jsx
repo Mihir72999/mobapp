@@ -3,11 +3,14 @@ import { store } from "../state/store";
 import {  Outlet, useNavigate} from "react-router-dom";
 import { useGetUserQuery } from "../state/authAdaptor";
 import { useEffect , memo, useState } from "react";
-import LoadingBar from "react-top-loading-bar"
+import LoadingBar from "react-top-loading-bar";
+import { useGetProductQuery } from "../state/expandedSlice";
+
 
 const Prefetch = () =>{
   const [progress , setProgress] = useState(0)  
     const { data , status } = useGetUserQuery('UserList')
+                       useGetProductQuery()
 
 const navigate = useNavigate() 
 
