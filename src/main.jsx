@@ -10,7 +10,6 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
-import  CounterProvider  from './state/CounterProvider'
 import Navbar from './Component/Navbar.jsx'
 // ..
 
