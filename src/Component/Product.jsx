@@ -67,13 +67,13 @@ const Product = () => {
            our vast collection of products from the comfort of your home.
             Our intuitive interface allows you to find what you need with just a few clicks,
            making the entire process smooth and hassle-free.</p>
-        <button
+        <a href={`#main`}><button
         data-aos="slide-right"
         data-aos-duration='2000'
-     
+         
         className='button bg-transparent border-2 border-separate lg:text-xl 
         text-sm lg:py-3 lg:px-8 px-3 py-2  lg:my-8 my-2
-        font-normal  border-indigo-500 text-indigo-950' >View More</button>
+        font-normal  border-indigo-500 text-indigo-950' >View More</button></a>
         </div>
       </div>
     
