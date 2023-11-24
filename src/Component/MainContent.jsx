@@ -6,7 +6,7 @@ const MainContent = () => {
   
   return (
 <div>
-<div data-aos='fade-left' className="flex lg:mr-70 lg:flex-row flex-col mt-16">
+<div data-aos='fade-left' id='main' className="flex lg:mr-70 lg:flex-row flex-col mt-16">
    <div className=""><img className="w-[300px] h-[200px]" src={url} alt='' /> </div>
   <div className="lg:max-w-[300px] lg:ml-16 ml-2 lg:mt-0 mt-5">
     <h1 className="text-xl font-bold">COMMERCIAL SERVICE</h1>
