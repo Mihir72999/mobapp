@@ -31,7 +31,9 @@ if(status === 'pending'){
  onLoaderFinished={()=>setProgress(0)}
   />
 }
-
+if(status === 'rejected'){
+  navigate('/login')
+}
 const content = (
   <div className="flex flex-col justify-center my-10 items-center ">
     <div>your Sesson has been expired</div>
