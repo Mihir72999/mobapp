@@ -38,8 +38,8 @@ const handleSubmit = async(e) =>{
       const auth = getAuth(apps)
       const result = await signInWithPopup(auth , googlePrivider)
       const {displayName ,email } =  result?.user
-       login({email:email,password:displayName})
-       navigate('/main')
+       await login({email:email,password:displayName}).then(()=>navigate('/main'))
+       
 
     }catch(err){
       window.alert(`user not found | ${err}`)
