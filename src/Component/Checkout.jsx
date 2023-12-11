@@ -17,7 +17,7 @@ const RAZORPAY_API_KEY = 'rzp_test_aVX0BatHfyMi7T'
 const Checkout = () => {
   const dispatch = useDispatch()
   const cartItem = useSelector(selectAll)
-  const [razorPay ] = useRazorPayMutation()
+  const [razorPay ,{ isLoading } ] = useRazorPayMutation()
 const [postOrder] = usePostOrderMutation()
 const [selectState , setSelectState] = useState('')
 const [detail , setDetail]  = useState({
@@ -139,7 +139,7 @@ const [detail , setDetail]  = useState({
                    })}
                   </div>
                   <div>
-                    <button disabled={!selectState.length} onClick={hadlePay} className="w-full px-3 py-2 bg-blue-700 disabled:bg-blue-400 text-white rounded-md">Pay Now</button>
+                    <button disabled={!selectState.length} onClick={hadlePay} className="w-full px-3 py-2 bg-blue-700 disabled:bg-blue-400 text-white rounded-md">{ isLoading ? Loading... : Pay Now }</button>
                   </div>
               </div>
           </div>
