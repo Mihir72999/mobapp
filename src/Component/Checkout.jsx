@@ -139,7 +139,15 @@ const [detail , setDetail]  = useState({
                    })}
                   </div>
                   <div>
-                    <button disabled={!selectState.length} onClick={hadlePay} className="w-full px-3 py-2 bg-blue-700 disabled:bg-blue-400 text-white rounded-md">{ isLoading ? Loading... : Pay Now }</button>
+                   <button disabled={!selectState.length ||
+                    !detail.product.length
+                    || detail.fname.length < 2
+                    || detail.email.length < 10
+                    || detail.lname.length < 2
+                    || detail.phone.length < 9
+                    || detail.pin < 6
+                    || detail.street < 2
+                    || detail.town < 2} onClick={hadlePay} className="w-full px-3 py-2 bg-blue-700 disabled:bg-blue-400 text-white rounded-md">{isLoading ? 'loading...' : 'Pay Now'}</button>
                   </div>
               </div>
           </div>
