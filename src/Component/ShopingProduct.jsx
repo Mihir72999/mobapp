@@ -80,18 +80,18 @@ const [select , setSelect] = useState('')
         </nav>
         <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
           <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
-            <img width={200} src={selectedProduct && selectedProduct.image} alt="Two each of gray, white, and black shirts laying flat." className="py-10  rotate-45 h-full  object-cover object-center" />
+            <img width={200} src={selectedProduct && selectedProduct.image} alt={selectedProduct && selectedProduct.name} className="py-10  rotate-45 h-full  object-cover object-center" />
           </div>
           <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
             <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
-              <img width={150} src={selectedProduct && selectedProduct.image} alt="Model wearing plain black basic tee." className=" h-full mx-auto object-cover object-center" />
+              <img width={150} src={selectedProduct && selectedProduct.image} alt={selectedProduct && selectedProduct.name} className=" h-full mx-auto object-cover object-center" />
             </div>
             <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
-              <img width={150} src={selectedProduct && selectedProduct.image} alt=" Model wearing plain gray basic tee." className="rotate-90 h-full mx-auto object-cover object-center" />
+              <img width={150} src={selectedProduct && selectedProduct.image} alt={selectedProduct && selectedProduct.name} className="rotate-90 h-full mx-auto object-cover object-center" />
             </div>
           </div>
           <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
-            <img src={selectedProduct && selectedProduct.image} alt="Model wearing plain white basic tee." className="h-full mx-auto  object-cover object-center" />
+            <img src={selectedProduct && selectedProduct.image} alt={selectedProduct && selectedProduct.name} className="h-full mx-auto  object-cover object-center" />
           </div>
         </div>
 
