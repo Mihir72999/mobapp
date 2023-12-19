@@ -5,7 +5,7 @@ const cartAddapter = createEntityAdapter()
 
 const addSlice = createSlice({
     name:'addSlice',
-   initialState:cartAddapter.getInitialState({ cartItem:false }),
+   initialState:cartAddapter.getInitialState({ cartItem:false , subtotal:0}),
    reducers:{
     addToCart(state , action){
         const id = action.payload.map(e=>e.id)
@@ -28,11 +28,14 @@ const addSlice = createSlice({
     },
     clearCart(state){
     cartAddapter.removeAll(state)
+    },
+    amountPrice(state , action){
+        state.subtotal = action.payload
     }
    }
 
 })
 export const {selectAll , selectById} = cartAddapter.getSelectors(state=>state.cart)
 
-export const {addToCart ,deleteCart , showCart , clearCart } = addSlice.actions
+export const {addToCart ,deleteCart , showCart , clearCart , amountPrice } = addSlice.actions
 export default addSlice.reducer    
