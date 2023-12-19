@@ -111,7 +111,14 @@ export const authAddaptor = productSlice.injectEndpoints({
             url:'deleteuser',
             method:'DELETE',
             body:{id}
-        })
+        }),
+        async onQueryStarted(arg,{dispatch, queryFulfilled}){
+            await queryFulfilled
+            dispatch(logOut())
+            setTimeout(()=>{
+                dispatch(productSlice.util.resetApiState())
+            },1000)
+        }
     })
 
 
