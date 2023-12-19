@@ -107,10 +107,10 @@ export const authAddaptor = productSlice.injectEndpoints({
         }
     }) ,
     deleteUser:builder.mutation({
-        query:userId=>({
+        query:id=>({
             url:'deleteuser',
             method:'DELETE',
-            body:{userId}
+            body:{id}
         })
     })
 
