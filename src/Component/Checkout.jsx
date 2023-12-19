@@ -33,10 +33,11 @@ const [detail , setDetail]  = useState({
 })
 
     
+const {subtotal} = useSelector(state=>state.cart)
 
 
     const hadlePay = async() =>{
-      const amount = Number(12000)
+      const amount = Number(subtotal * 100)
       const  {data:{order}} = await razorPay({amount})
       const id = order?.id
       
