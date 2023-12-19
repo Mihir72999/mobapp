@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom"
 import { FcHome } from 'react-icons/fc'
 import { LiaProductHunt } from 'react-icons/lia'
-import { deleteCart, selectAll } from "../state/addSlice"
+import {  amountPrice , deleteCart, selectAll } from "../state/addSlice"
 import { useDispatch, useSelector } from "react-redux"
 import {AiOutlineDelete} from 'react-icons/ai'
 import Formate from "./Formate"
 import PriceReducer from "./PriceReducer"
 import actualTax from "./actualTax"
-import { memo } from "react"
+import { memo , useEffect} from "react"
 import useTitle from "../hook/useTitle"
 
 
@@ -27,7 +27,9 @@ const Carts = () => {
 
    const price = Formate(subTotal +  Delivery + actualTaxes )
  item.length ? useTitle(`Total ${price}`) : useTitle('no item in cart')
-  
+  useEffect(()=>{
+  dispatch(amountPrice(subTotal + Delivery + actualTaxes))
+ },[])
   
    const content = (
    item && Object.keys(item).map((e, i)=>{
