@@ -1,5 +1,7 @@
 import { memo } from 'react'
 import {RiContrastFill} from 'react-icons/ri'
+import PropTypes from 'prop-types'
+
 
 const item = [
   {icon : < RiContrastFill/> , name:'Unleashing the Power of Online Shopping'},
@@ -15,13 +17,12 @@ const item = [
 
 ]
 
-const Content = () => {
+const Content = (props) => {
   return (
     <>
     <div className="lg:mt-10 mt-0">
-      <h1 data-aos='slide-left' className="text-3xl font-bold text-gray-700 my-6">WELCOME TO ONLINE STORE </h1>
-      <p data-aos='slide-left' className="mb-6 text-gray-500">We are Providing Trendy Mobile Backcovers.
-       Discover Backcover Elegance</p>
+      <h1 data-aos='slide-left' className="text-3xl font-bold text-gray-700 my-6">{props.title}</h1>
+      <p data-aos='slide-left' className="mb-6 text-gray-500">{props.description}</p>
     
       {item.map((e,i)=>{
         return<div key={i} className='flex items-center my-4 text-[1.1rem] text-sky-500 gap-4'>
@@ -35,6 +36,10 @@ const Content = () => {
 
     </>
   )
+}
+Content.prototype = {
+  title:PropTypes.string,
+  description:PropTypes.string
 }
  const Contents = memo(Content)
 export default Contents
