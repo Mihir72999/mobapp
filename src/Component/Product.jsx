@@ -1,13 +1,8 @@
 
 
+import { Link } from 'react-router-dom';
 import Contents from './Content';
 import MainContents from './MainContent';
-// import { io } from 'socket.io-client';
-// import { useEffect } from 'react';
-
-
-// const socket = io('http://localhost:4000',  {transports:['websocket']})
-
 
 
 
@@ -22,25 +17,13 @@ const url = [
 ]
 
 const Product = () => {
- 
-// useEffect(()=>{
-  
-//   socket.on('connection',(server)=>{
-//   console.log(server)
-//   })
-//   socket.emit('callUser',{callToUser:'mihir patel'})
-  
-//   return () =>{
-//     socket.off()
-//   }
-// },[])
 
   
  
   return (
     <>
      
-      <div  className=' flex w-[100%]'>
+      <div  className=' flex flex-col lg:mt-0  mt-3 w-[100%]'>
         
         <div 
         
@@ -49,18 +32,22 @@ const Product = () => {
         data-aos-duration="1000"
         ><img  className='w-[2000px]  lg:h-[600px] h-[200px]' src={url[0]} alt=''/></div>
        <div
-        className='  absolute  lg:left-2/4 lg:top-2/4  
+        className='block lg:absolute  lg:left-2/4 lg:top-2/4  
          top-3/3
+
          px-2
          text-x
          font-bold 
-         lg:text-4xl'
+         lg:text-4xl
+         my-3
+         lg:my-0
+         '
          
         >
-        <p data-aos="fade-up" className='lg:text-zinc-50 text-red-600'>FAST AND RELIABLE</p>
-        <p data-aos="fade-up" className='lg:text-indigo-900 text-white'>SHOP WITH CONFIDENT</p>
+        <p data-aos="fade-up" className='lg:text-zinc-50 text-green-800'>FAST AND RELIABLE</p>
+        <p data-aos="fade-up" className='text-indigo-900 '>SHOP WITH CONFIDENT</p>
         <p data-aos="fade-up"
-          className=' lg:text-xs lg:my-4 my-0  text-xs text-zinc-50  max-w-[550px] font-semibold'
+          className=' lg:text-xs lg:my-4 my-0  text-xs text-gray-700 lg:text-zinc-50  max-w-[550px] font-semibold'
            data-aos-delay='1500'
         >With our user-friendly e-commerce platform, shopping has never been easier.
            Say goodbye to long queues and crowded stores as you browse through 
