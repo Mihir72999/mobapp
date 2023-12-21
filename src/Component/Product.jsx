@@ -65,7 +65,9 @@ const Product = () => {
       </div>
     
       <div className='flex justify-around lg:flex-row flex-col' >
-        <Contents />
+        <Contents
+        title='WELCOME TO ONLINE STORE'
+        description='We are Providing Trendy Mobile Backcovers. Discover Backcover Elegance'/>
         <MainContents />
         </div>
       
