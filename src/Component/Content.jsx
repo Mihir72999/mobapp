@@ -18,7 +18,7 @@ const item = [
 const Content = () => {
   return (
     <>
-    <div className="lg:mt-10 mt-16">
+    <div className="lg:mt-10 mt-0">
       <h1 data-aos='slide-left' className="text-3xl font-bold text-gray-700 my-6">WELCOME TO ONLINE STORE </h1>
       <p data-aos='slide-left' className="mb-6 text-gray-500">We are Providing Trendy Mobile Backcovers.
        Discover Backcover Elegance</p>
