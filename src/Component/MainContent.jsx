@@ -2,6 +2,8 @@ import { memo} from "react"
 import { Link } from "react-router-dom"
 import { data } from "../../data"
 
+
+const MainContent = () => {
   return (
 <div>
 
