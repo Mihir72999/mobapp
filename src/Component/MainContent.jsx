@@ -1,21 +1,11 @@
-import { memo, useEffect, useState } from "react"
+import { memo} from "react"
 import { Link } from "react-router-dom"
+import { data } from "../../data"
 
-
-const MainContent = () => {
-const [content , setContent] = useState([])
-const fetchContent = async () =>{
-   const item = await fetch('./data.json').then(res=>res.json()).then(data=>setContent(data))
- return item
-  } 
-  
-useEffect(()=>{
-  fetchContent()
-},[])
   return (
 <div>
 
-{content && content.map(({title, description , url , href}, i)=>(
+{data.map(({title, description , url , href}, i)=>(
 <div data-aos='fade-left' id='main' key={i} className="flex lg:mr-70 lg:flex-row flex-col mt-16">
    <img className="w-[300px] h-[200px]" src={url} alt='' /> 
   <div className="lg:max-w-[300px] lg:ml-16 ml-2 lg:mt-0 mt-5">
