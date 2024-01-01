@@ -13,7 +13,7 @@ export const  ProductCard  = ({name,id,price,image}) =>{
                         />
         <span className='px-2'>{name}</span>
         <span className='flex items-center'><strong>Price:</strong>{Formate(price)}</span>
-        <Link to={`/product/${id}?name=${name}`} className='bg-sky-500 py-2 px-10 rounded-md text-white' >Add to Cart</Link> 
+        <Link to={`/product/${id}?name=${decodeURI(name)}`} className='bg-sky-500 py-2 px-10 rounded-md text-white' >Add to Cart</Link> 
         </div>
         </div>
     }
