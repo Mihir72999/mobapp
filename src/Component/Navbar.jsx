@@ -111,7 +111,7 @@ const updatedNavigation = navigation.map((item, idx) => {
                       <div className="ml-10 flex items-baseline space-x-4">
                         {current && current.map((item,index) => (
                           <Link
-                            key={item.name}
+                            key={index}
                             onClick={()=>handleClick(index )}
                             to={item.href.toLowerCase()}
                             className={classNames(
@@ -158,18 +158,19 @@ const updatedNavigation = navigation.map((item, idx) => {
                           leaveTo="transform opacity-0 scale-95"
                         >
                           <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                            {userNavigation.map((item) => (
-                              <Menu.Item key={item.name}>
+                            {userNavigation.map((item, index) => (
+                              <Menu.Item key={index}>
                                 {({ active }) => (
                                   <Link
-                                  onClick={()=>item.name === 'Sign out' ? item.signOut() : item.deleteUsers(users.id)}
                                     to={item.href}
                                     className={classNames(
                                       active ? 'bg-gray-100' : '',
                                       'block px-4 py-2 text-sm text-gray-700'
                                     )}
                                   >
-                                    {item.name}
+                                    <div onClick={()=>item.name === 'Sign out' ? item.signOut() : item.deleteUsers(users.id)}>
+                                    {item.name} 
+                                    </div>
                                   </Link>
                                 )}
                               </Menu.Item>
@@ -191,10 +192,10 @@ const updatedNavigation = navigation.map((item, idx) => {
 
               <Disclosure.Panel className="md:hidden">
                 <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-                  {navigation.map((item) => (
+                  {navigation.map((item, index) => (
+                   <Link key={index} to={item.href}>
                     <Disclosure.Button
-                      key={item.name}
-                      as="a"
+                      as="div"
                       href={item.href}
                       className={classNames(
                         item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
@@ -204,6 +205,7 @@ const updatedNavigation = navigation.map((item, idx) => {
                     >
                       {item.name}
                     </Disclosure.Button>
+                     </Link>
                   ))}
                 </div>
                 <div className="border-t border-gray-700 pb-3 pt-4">
@@ -224,16 +226,17 @@ const updatedNavigation = navigation.map((item, idx) => {
                     </button>
                   </div>
                   <div className="mt-3 space-y-1 px-2">
-                    {userNavigation.map((item) => (
-                      <Disclosure.Button
+                    {userNavigation.map((item , index) => (
+                      <Link key={index} to={item.href}>
+                       <Disclosure.Button
                         key={item.name}
-                        as="a"
-                        href={item.href}
+                        as="div"
                         className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
-                       onClick={item.signOut}
+                       onClick={item.signOut || item.deleteUsers}
                       >
                         {item.name}
                       </Disclosure.Button>
+                        </Link>
                     ))}
                   </div>
                 </div>
