@@ -190,7 +190,7 @@ const updatedNavigation = navigation.map((item, idx) => {
                    <Link key={index} to={item.href}>
                     <Disclosure.Button
                       as="div"
-                      href={item.href}
+                    
                       className={classNames(
                         item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                         'block rounded-md px-3 py-2 text-base font-medium'
@@ -223,7 +223,7 @@ const updatedNavigation = navigation.map((item, idx) => {
                     {userNavigation.map((item , index) => (
                       <Link key={index} to={item.href}>
                        <Disclosure.Button
-                        key={item.name}
+        
                         as="div"
                         className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                        onClick={()=> item.signOut || item.deleteUsers(data?.id)}
