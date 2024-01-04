@@ -3,8 +3,6 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { AiFillBell, AiOutlineClose, AiOutlineMenu, AiOutlineShoppingCart } from 'react-icons/ai'
 import { Link, useLocation } from 'react-router-dom'
 import {  useSelector } from 'react-redux'
-// import jwtDecode from "jwt-decode"
-
 import { useDeleteUserMutation, useGetUserQuery, useUserLogoutMutation } from '../state/authAdaptor'
 import { selectAll } from '../state/addSlice'
 
@@ -27,10 +25,6 @@ function classNames(...classes) {
 const Navbar = () => {
   const {pathname} = useLocation()
   const exectPath = pathname.split('/')[1]
-  // const {cartItem} = useSelector(state=>state.cart)
-  // const {token } = useSelector(state=>state.auth)
-  
-  // const users =  token  && jwtDecode(token)
 
   const {data} =  useGetUserQuery('UserList')
  
@@ -43,7 +37,7 @@ const Navbar = () => {
   
   const [userLogout] = useUserLogoutMutation()
   const cart = useSelector(selectAll)
-  const {user:users} = useSelector(state=>state.auth)
+
 const [deleteUser] = useDeleteUserMutation()
 
   const handleChanges = () =>{
@@ -168,7 +162,7 @@ const updatedNavigation = navigation.map((item, idx) => {
                                       'block px-4 py-2 text-sm text-gray-700'
                                     )}
                                   >
-                                    <div onClick={()=>item.name === 'Sign out' ? item.signOut() : item.deleteUsers(users.id)}>
+                                    <div onClick={()=> item.signOut || item.deleteUsers(data?.id)}>
                                     {item.name} 
                                     </div>
                                   </Link>
@@ -232,7 +226,7 @@ const updatedNavigation = navigation.map((item, idx) => {
                         key={item.name}
                         as="div"
                         className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
-                       onClick={item.signOut || item.deleteUsers}
+                       onClick={()=> item.signOut || item.deleteUsers(data?.id)}
                       >
                         {item.name}
                       </Disclosure.Button>
