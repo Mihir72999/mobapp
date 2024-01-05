@@ -48,15 +48,15 @@ const [deleteUser] = useDeleteUserMutation()
     }
       
   }
-  const deleteUsers = (userId) =>{
-  deleteUser(userId)
-  window.alert(`${data?.userName} has been deleted account`)
+  const deleteUsers = () =>{
+   deleteUser(data?.id)
+   window.alert(`${data?.userName} has been deleted account`)
   }
   const userNavigation = [
     { name: data?.userName ? 'Welcome' : 'Register', href: data?.userName ? '/main' : '/' ,isActive:exectPath === '' ? true : false},
     { name: data?.userName ? (<button data-cart={cart?.length} className={classNames(cart?.length ? 'buttonss' : '')}><AiOutlineShoppingCart size={25} /></button>) :'Log in', href: data?.userName ? '/cart' :'/login' },
-    { name: data?.userName ? 'Sign out' : '' ,  signOut:handleChanges },
-    { name: data?.userName ? 'deleteUserAccount' : '' , deleteUsers }
+    { name: data?.userName ? 'Sign out' : '' ,  onclick:handleChanges },
+    { name: data?.userName ? 'deleteUserAccount' : '' , onclick:deleteUsers }
   ]
   // const navigate = useNavigate()
   const [current ,setCurrent] = useState(navigation)
@@ -162,7 +162,7 @@ const updatedNavigation = navigation.map((item, idx) => {
                                       'block px-4 py-2 text-sm text-gray-700'
                                     )}
                                   >
-                                    <div onClick={()=> item.signOut || item.deleteUsers(data?.id)}>
+                                    <div onClick={item.onclick}>
                                     {item.name} 
                                     </div>
                                   </Link>
@@ -226,7 +226,7 @@ const updatedNavigation = navigation.map((item, idx) => {
         
                         as="div"
                         className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
-                       onClick={()=> item.signOut || item.deleteUsers(data?.id)}
+                       onClick={item.onclick}
                       >
                         {item.name}
                       </Disclosure.Button>
