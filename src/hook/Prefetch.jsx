@@ -1,13 +1,13 @@
 import { productSlice } from "../state/productSlice";
 import { store } from "../state/store";
-import {  Outlet, useNavigate} from "react-router-dom";
+import {  Outlet, Navigate} from "react-router-dom";
 import { useGetUserQuery } from "../state/authAdaptor";
 import { useEffect , useState } from "react";
 import LoadingBar from "react-top-loading-bar";
 import { useGetProductQuery } from "../state/expandedSlice";
 import { useGetBrandmodelQuery } from "../state/brandmodelSlice";
 
-
+let content;
 const Prefetchs = () =>{
   const [progress , setProgress] = useState(0)  
     const { data , status } = useGetUserQuery('UserList')
@@ -31,19 +31,30 @@ if(status === 'pending'){
  onLoaderFinished={()=>setProgress(0)}
   />
 }
+
+ if(status === 'fulfilled'){
+  return content = <Outlet/>
+ }
+  
 if(status === 'rejected'){
-  navigate('/login')
+     return  <Navigate to={'/login'}  replace={true} />
 }
-const content = (
+
+  
+content = (
   <div className="flex flex-col justify-center my-10 items-center ">
-    <div>your Sesson has been expired</div>
+    <span>your Sesson has been expired </span>
+    <Navigate to={'/login'}  replace={true} >
     <button
     className="bg-blue-600 text-white py-3 px-5 my-3 rounded-md"
-    onClick={()=>navigate('/login'  ,{replace:true , relative:'path'})}>login again</button>
+    >login again</button>
+  </Navigate>
   </div>
 )
-return data && !data.message ? <Outlet/> : content
+return content
+
 }
+
 
 
 export default Prefetchs
