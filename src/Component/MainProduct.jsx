@@ -3,13 +3,18 @@
  import { Link } from "react-router-dom"
  import { FcHome } from 'react-icons/fc'
  import { LiaProductHunt } from 'react-icons/lia'
-import useTitle from "../hook/useTitle"
-import { ProductCard } from "./ProductCard"
+ import useTitle from "../hook/useTitle"
+ import { ProductCard } from "./ProductCard"
+ import Pagination from "./Pagination"
 
 
 
 const MainProduct = () => {
-  
+// state for pagination   
+const [to ,setTo] = useState(0)
+const[from , setFrom] = useState(10)
+const [page ,setPage] = useState(1)
+ 
   // Fetch product data from Redux store
   const product = useSelector(productDatas)
   
@@ -48,7 +53,8 @@ const MainProduct = () => {
     return  <ProductCard key={index} {...item} /> 
   })}
    </div>
-           
+    {/* pagination section */}
+     <Pagination page={page} setPage={setPage} product={product && product?.length} setTo={setTo} setFrom={setFrom}/>       
     </section>
   )
 } 
