@@ -49,7 +49,7 @@ const [page ,setPage] = useState(1)
         
    <div className='flex flex-wrap justify-center'>
    {/* Product listing */}
-  {product && product.map((item , index  )=>{
+  {product && product.slice(to,from).map((item , index)=>{
    
     return  <ProductCard key={index} {...item} /> 
   })}
