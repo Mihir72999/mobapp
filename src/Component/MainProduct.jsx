@@ -47,7 +47,7 @@ const [page ,setPage] = useState(1)
           </ol>
         </nav>
         
-   <div className='flex flex-wrap justify-center'>
+   <div className='flex flex-wrap mx-auto mt-6 w-[70vw]'>
    {/* Product listing */}
   {product && product.slice(to,from).map((item , index)=>{
    
