@@ -15,8 +15,6 @@ const Prefetchs = () =>{
                        useGetBrandmodelQuery()
 
 
-const navigate = useNavigate() 
-
  useEffect(() =>{
     setProgress(100)
     store.dispatch(productSlice.util.prefetch('getProduct' , 'ProductList' , {force:true}))
