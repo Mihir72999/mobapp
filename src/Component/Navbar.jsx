@@ -11,10 +11,10 @@ import { selectAll } from '../state/addSlice'
 
 const navigation = [
   { name: 'Dashboard', href: '/main', current: true },
-  { name: 'Team', href: '/test', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
-  { name: 'Reports', href: '#', current: false },
+  // { name: 'Team', href: '/test', current: false },
+  // { name: 'Projects', href: '#', current: false },
+  // { name: 'Calendar', href: '#', current: false },
+  // { name: 'Reports', href: '#', current: false },
 ]
 
 function classNames(...classes) {
@@ -60,22 +60,7 @@ const [deleteUser] = useDeleteUserMutation()
   ]
   // const navigate = useNavigate()
   const [current ,setCurrent] = useState(navigation)
-  const handleClick = (indexes ) =>{
-
-const updatedNavigation = navigation.map((item, idx) => {
-  return {
-    ...item,
-    current: idx === indexes, // Set the clicked item to true, others to false
-  };
-});
- setCurrent(updatedNavigation)
   
-  } 
-// const handleChange = useCallback(() =>{
-
-//   navigate('/cart')
-// },[navigate])
-
   return (
     <>
       {/*
@@ -106,7 +91,6 @@ const updatedNavigation = navigation.map((item, idx) => {
                         {current && current.map((item,index) => (
                           <Link
                             key={index}
-                            onClick={()=>handleClick(index )}
                             to={item.href.toLowerCase()}
                             className={classNames(
                              item.current
@@ -185,7 +169,7 @@ const updatedNavigation = navigation.map((item, idx) => {
               </div>
 
               <Disclosure.Panel className="md:hidden">
-                <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
+{/*                 <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
                   {navigation.map((item, index) => (
                    <Link key={index} to={item.href}>
                     <Disclosure.Button
@@ -201,7 +185,7 @@ const updatedNavigation = navigation.map((item, idx) => {
                     </Disclosure.Button>
                      </Link>
                   ))}
-                </div>
+                </div> */}
                 <div className="border-t border-gray-700 pb-3 pt-4">
                   <div className="flex items-center px-5">
                     <div className="flex-shrink-0">
