@@ -6,6 +6,7 @@
  import useTitle from "../hook/useTitle"
  import { ProductCard } from "./ProductCard"
  import Pagination from "./Pagination"
+ import { useState } from "react"
 
 
 
