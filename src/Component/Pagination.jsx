@@ -2,7 +2,7 @@ import React,{memo} from 'react'
 
 import {CiSquareChevLeft,CiSquareChevRight} from 'react-icons/ci'
 
-const   s = ({ setTo , setFrom , page , setPage , product}) => {
+const Paginations = ({ setTo , setFrom , page , setPage , product}) => {
    
    
     let totalItemPerPage = 10;
