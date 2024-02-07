@@ -55,8 +55,8 @@ const [deleteUser] = useDeleteUserMutation()
   const userNavigation = [
     { name: data?.userName ? 'Welcome' : 'Register', href: data?.userName ? '/main' : '/' ,isActive:exectPath === '' ? true : false},
     { name: data?.userName ? (<button data-cart={cart?.length} className={classNames(cart?.length ? 'buttonss' : '')}><AiOutlineShoppingCart size={25} /></button>) :'Log in', href: data?.userName ? '/cart' :'/login' },
-    { name: data?.userName && 'Sign out'  , data?.userName &&  onclick:handleChanges },
-    { name: data?.userName && 'deleteUserAccount' , data?.userName && onclick:deleteUsers }
+    { name: data?.userName && 'Sign out'  ,   onclick:handleChanges },
+    { name: data?.userName && 'deleteUserAccount' , onclick:deleteUsers }
   ]
   // const navigate = useNavigate()
   const [current ,setCurrent] = useState(navigation)
