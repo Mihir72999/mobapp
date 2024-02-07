@@ -7,7 +7,7 @@ const Paginations = ({ setTo , setFrom , page , setPage , product}) => {
    
     let totalItemPerPage = 9;
    let items = product / totalItemPerPage
-   console.log(items , products)
+   console.log(items , product)
     let currentPage = 1
     let n = [] ;
     let arr = [];
