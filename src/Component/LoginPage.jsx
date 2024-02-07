@@ -12,10 +12,10 @@ const LoginPage = () => {
   const [progress , setProgress] = useState(0)
   const [ email , setEmail ] = useState('')
 const [password, setPassword] = useState('')
-const [login ,{isLoading , isError ,error }] = useLoginMutation()
+const [login ,{data, isLoading , isError ,error }] = useLoginMutation()
 const navigate = useNavigate()
 
-
+ console.log(data)
 const handleSubmit = async(e) =>{
   try{
      e.preventDefault()
