@@ -5,7 +5,7 @@ import {CiSquareChevLeft,CiSquareChevRight} from 'react-icons/ci'
 const Paginations = ({ setTo , setFrom , page , setPage , product}) => {
    
    
-    let totalItemPerPage = 10;
+    let totalItemPerPage = 9;
    let items = product / totalItemPerPage
     let currentPage = 1
     let n = [] ;
