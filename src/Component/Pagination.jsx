@@ -5,9 +5,9 @@ import {CiSquareChevLeft,CiSquareChevRight} from 'react-icons/ci'
 const Paginations = ({ setTo , setFrom , page , setPage , product}) => {
    
    
-    let totalItemPerPage = 9;
+    let totalItemPerPage = 7;
    let items = product / totalItemPerPage
-   console.log(items , product)
+ 
     let currentPage = 1
     let n = [] ;
     let arr = [];
@@ -16,7 +16,7 @@ const Paginations = ({ setTo , setFrom , page , setPage , product}) => {
         arr = [...n].map(Number)
     }
     
-   console.log(arr)
+  
     const handleChange = (element ) =>{
         currentPage = Number(element.target.value)
         setPage(currentPage)
