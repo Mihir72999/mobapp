@@ -11,7 +11,7 @@ const Paginations = ({ setTo , setFrom , page , setPage , product}) => {
     let currentPage = 1
     let n = [] ;
     let arr = [];
-     for (let i = 1; i <= items; i++){
+     for (let i = 1; i <= Math.ceil(items); i++){
         n += [i]
         arr = [...n].map(Number)
     }
