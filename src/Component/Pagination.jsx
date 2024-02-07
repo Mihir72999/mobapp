@@ -15,7 +15,7 @@ const Paginations = ({ setTo , setFrom , page , setPage , product}) => {
         arr = [...n].map(Number)
     }
     
-   
+   console.log(arr)
     const handleChange = (element ) =>{
         currentPage = Number(element.target.value)
         setPage(currentPage)
