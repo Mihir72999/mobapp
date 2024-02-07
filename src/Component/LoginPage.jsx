@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useLoginMutation } from "../state/authAdaptor"
 
-import {NavLink, useNavigate} from 'react-router-dom'
+import {NavLink , Navigate} from 'react-router-dom'
 import LoadingBar from "react-top-loading-bar"
 import useTitle from "../hook/useTitle"
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth"
@@ -13,9 +13,9 @@ const LoginPage = () => {
   const [ email , setEmail ] = useState('')
 const [password, setPassword] = useState('')
 const [login ,{data, isLoading , isError ,error }] = useLoginMutation()
-const navigate = useNavigate()
 
- console.log(data)
+
+ console.log(data?.accessToken)
 const handleSubmit = async(e) =>{
   try{
      e.preventDefault()
@@ -23,7 +23,7 @@ const handleSubmit = async(e) =>{
     setEmail('')
     setPassword('')
     setProgress(100)
-    navigate('/main')
+   
     
    
   }catch(err){
@@ -38,7 +38,7 @@ const handleSubmit = async(e) =>{
       const auth = getAuth(apps)
       const result = await signInWithPopup(auth , googlePrivider)
       const {displayName ,email } =  result?.user
-       await login({email:email,password:displayName}).then(()=>navigate('/main'))
+       await login({email:email,password:displayName})
        
 
     }catch(err){
@@ -57,6 +57,7 @@ if(isLoading){
 
   return (
     <>
+    {data?.accessToken && <Navigate to="/main" replace={true} />}  
     <section className="bg-gray-50 dark:bg-gray-900">
   <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
       <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
