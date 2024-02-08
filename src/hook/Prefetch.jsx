@@ -11,12 +11,13 @@ let content;
 const Prefetchs = () =>{
   const [progress , setProgress] = useState(0)  
     const { data , status } = useGetUserQuery('UserList')
-
+       useGetProductQuery()
+       useGetBrandmodelQuery()
 
  useEffect(() =>{
     setProgress(100)
-    store.dispatch(productSlice.util.prefetch('getProduct' , 'ProductList' , {force:true}))
-  store.dispatch(productSlice.util.prefetch('getBrandmodel' , 'BrandmodelList' , {force:true}))
+    store.dispatch(productSlice.util.prefetch('getProduct' , 'Product' , {force:true}))
+  store.dispatch(productSlice.util.prefetch('getBrandmodel' , 'Brandmodel' , {force:true}))
 
 },[])
 if(status === 'pending'){
