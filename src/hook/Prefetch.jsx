@@ -10,9 +10,9 @@ import { useGetBrandmodelQuery } from "../state/brandmodelSlice";
 let content;
 const Prefetchs = () =>{
   const [progress , setProgress] = useState(0)  
-    const { data , status } = useGetUserQuery('UserList')
-                       // useGetProductQuery()
-                       // useGetBrandmodelQuery()
+    const { data , status } = useGetUserQuery()
+                        useGetProductQuery()
+                        useGetBrandmodelQuery()
 
 
  useEffect(() =>{
