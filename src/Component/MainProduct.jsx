@@ -23,8 +23,8 @@ const [page ,setPage] = useState(1)
    // Set the page title using the custom hook
     useTitle("Product")
 
-                        useGetProductQuery('Product')
-                        useGetBrandmodelQuery('BrandmodelList')      
+                        useGetProductQuery()
+                        useGetBrandmodelQuery()      
 
  
     return (
