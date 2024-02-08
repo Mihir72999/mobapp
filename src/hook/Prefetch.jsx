@@ -16,8 +16,8 @@ const Prefetchs = () =>{
 
  useEffect(() =>{
     setProgress(100)
-    store.dispatch(productSlice.util.prefetch('getProduct' , 'Product' , {force:true}))
-  store.dispatch(productSlice.util.prefetch('getBrandmodel' , 'Brandmodel' , {force:true}))
+    // store.dispatch(productSlice.util.prefetch('getProduct' , 'Product' , {force:true}))
+  // store.dispatch(productSlice.util.prefetch('getBrandmodel' , 'Brandmodel' , {force:true}))
 
 },[])
 if(status === 'pending'){
