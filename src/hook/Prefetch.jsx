@@ -11,8 +11,8 @@ let content;
 const Prefetchs = () =>{
   const [progress , setProgress] = useState(0)  
     const { data , status } = useGetUserQuery('UserList')
-                       useGetProductQuery()
-                       useGetBrandmodelQuery()
+                       // useGetProductQuery()
+                       // useGetBrandmodelQuery()
 
 
  useEffect(() =>{
