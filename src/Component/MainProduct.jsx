@@ -1,6 +1,5 @@
  import { useSelector } from "react-redux"
- import { productDatas , useGetProductQuery} from "../state/expandedSlice"
- import { useGetBrandmodelQuery } from "../state/brandmodelSlice"
+ import { productDatas } from "../state/expandedSlice"
  import { Link } from "react-router-dom"
  import { FcHome } from 'react-icons/fc'
  import { LiaProductHunt } from 'react-icons/lia'
@@ -23,8 +22,7 @@ const [page ,setPage] = useState(1)
    // Set the page title using the custom hook
     useTitle("Product")
 
-                        useGetProductQuery()
-                        useGetBrandmodelQuery()      
+                             
 
  
     return (
