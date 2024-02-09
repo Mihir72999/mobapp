@@ -9,7 +9,7 @@ import {createApi , fetchBaseQuery} from '@reduxjs/toolkit/query/react'
        
         if(token){
             
-            headers.set('Authorization',`Bearer${token}`)
+            headers.set('Authorization',`Bearer ${token}`)
         }
         return headers
     }
